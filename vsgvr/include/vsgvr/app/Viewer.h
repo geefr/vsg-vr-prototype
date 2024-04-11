@@ -100,13 +100,17 @@ namespace vsgvr {
             /// to avoid exceptions being thrown on subsequence calls
             auto pollEvents() -> PollEventsResult;
 
+            /// hint for setting the FrameStamp::simulationTime to time since start_point()
+            static constexpr double UseTimeSinceStartPoint = std::numeric_limits<double>::max();
+
             /// Similar to vsg::Viewer, advance the framebuffers and prepare for rendering
             ///
             /// Internally this will acquire a frame / swapchain image from OpenXR. The application
             /// **must** call releaseFrame() once after rendering, even if this method returns false.
             ///
             /// @return Whether the application should render.
-            bool advanceToNextFrame();
+            /// 
+            bool advanceToNextFrame(double simulationTime= UseTimeSinceStartPoint);
 
             /// Submit rendering tasks to Vulkan
             void recordAndSubmit();

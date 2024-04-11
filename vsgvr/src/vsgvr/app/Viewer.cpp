@@ -107,7 +107,7 @@ namespace vsgvr
     return PollEventsResult::RunningDontRender;
   }
 
-  bool Viewer::advanceToNextFrame()
+  bool Viewer::advanceToNextFrame(double simulationTime)
   {
     // Viewer::acquireNextFrame
     _frameState = XrFrameState();
@@ -128,12 +128,12 @@ namespace vsgvr
     if (!_frameStamp)
     {
       // first frame, initialize to frame count and indices to 0
-      _frameStamp = vsg::FrameStamp::create(t, 0);
+      _frameStamp = vsg::FrameStamp::create(t, 0, simulationTime);
     }
     else
     {
       // after first frame so increment frame count and indices
-      _frameStamp = vsg::FrameStamp::create(t, _frameStamp->frameCount + 1);
+      _frameStamp = vsg::FrameStamp::create(t, _frameStamp->frameCount + 1, simulationTime);
     }
 
     for (auto& layer : compositionLayers)

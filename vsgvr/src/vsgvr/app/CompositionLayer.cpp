@@ -35,6 +35,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <vsg/vk/SubmitCommands.h>
 #include <vsg/commands/PipelineBarrier.h>
 
+#include <vsg/Lighting/Light.h>
+
 #include "../xr/Macros.cpp"
 
 namespace vsgvr {
