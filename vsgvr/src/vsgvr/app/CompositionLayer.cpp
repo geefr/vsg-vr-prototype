@@ -29,11 +29,22 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <vsgvr/xr/Session.h>
 #include <vsgvr/xr/GraphicsBindingVulkan.h>
 
+#include <vsg/core/Version.h>
+// see https://github.com/vsg-dev/VulkanSceneGraph/issues/1184
+#define VSG_VERSION_CHECK(major, minor, patch) ((major<<16)|(minor<<8)|(patch))
+#define VSG_VERSION VSG_VERSION_CHECK(VSG_VERSION_MAJOR, VSG_VERSION_MINOR, VSG_VERSION_PATCH)
+
 #include <vsg/app/View.h>
 #include <vsg/app/RenderGraph.h>
+#include <vsg/commands/PipelineBarrier.h>
+
+#if VSG_VERSION >= VSG_VERSION_CHECK(1, 1, 3)
+#include <vsg/lighting/Light.h>
+#else
+#include <vsg/nodes/Light.h>
+#endif
 #include <vsg/ui/FrameStamp.h>
 #include <vsg/vk/SubmitCommands.h>
-#include <vsg/commands/PipelineBarrier.h>
 
 #include "../xr/Macros.cpp"
 

@@ -26,8 +26,8 @@ namespace vsgvr
 {
     UserOrigin::UserOrigin() {}
 
-    UserOrigin::UserOrigin(vsg::dmat4 matrix)
-      : Inherit(matrix)
+    UserOrigin::UserOrigin(vsg::dmat4 _matrix)
+      : Inherit(_matrix)
     {}
 
     UserOrigin::UserOrigin(vsg::dvec3 position, vsg::dquat orientation, vsg::dvec3 scale)
